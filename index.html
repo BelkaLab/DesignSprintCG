@@ -1,0 +1,166 @@
+<html>
+	<head>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<style>body { background:#fff; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; }</style>
+		<link href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/css/base/jquery.ui.all.css" rel="stylesheet">
+		<link href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/css/lightness/jquery-ui-1.10.2.custom.min.css" rel="stylesheet">
+		<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
+		<script src="http://beneposto.pl/jqueryrotate/js/jQueryRotateCompressed.js"></script>
+		<script>
+        $(function() {
+          $( "#tcd1" ).draggable();
+					$( "#tcd2" ).draggable();
+					$( "#tcd3" ).draggable();
+					$( "#tcd4" ).draggable();
+					$( "#tcd5" ).draggable();
+					$( "#tcd6" ).draggable();
+        });
+    </script>
+		<style>
+			.line {
+				width: 100px;
+					 height: 5px;
+					 top:-10;
+					 border: solid thin blue;
+					 position: absolute;
+					 background-color: blue;
+					 -webkit-border-radius: 2px;
+					 -moz-border-radius: 2px;
+					 border-radius: 2px;
+			}
+		</style>
+		<script type="text/javascript">
+		 var boxCenterXOffset = 50;
+		 var boxCenterYOffset = 50;
+
+	 	 function drawLine(startObjId, endObjId, lineId) {
+			 var x1=0;
+			 var x2=0;
+			 var y1=0;
+			 var y2=0;
+			 switch (lineId) {
+				 case "#line1-wm":
+					 x1 = $(startObjId).offset().left + boxCenterXOffset;
+					 y1 = $(startObjId).offset().top + $(startObjId).height();
+					 x2 = $(endObjId).offset().left;
+					 y2 = $(endObjId).offset().top + boxCenterYOffset;
+					 break;
+				 case "#line2-wm":
+					 x1 = $(startObjId).offset().left;
+					 y1 = $(startObjId).offset().top + $(startObjId).height() - boxCenterYOffset;
+					 x2 = $(endObjId).offset().left;
+					 y2 = $(endObjId).offset().top + boxCenterYOffset;
+					 break;
+				 case "#line3-wm":
+					 x1 = $(startObjId).offset().left;
+					 y1 = $(startObjId).offset().top + $(startObjId).height() - boxCenterYOffset;
+					 x2 = $(endObjId).offset().left;
+					 y2 = $(endObjId).offset().top + boxCenterYOffset;
+					 break;
+				 case "#line4-wm":
+					 x1 = $(startObjId).offset().left + boxCenterXOffset*2;
+					 y1 = $(startObjId).offset().top + $(startObjId).height();
+					 x2 = $(endObjId).offset().left;
+					 y2 = $(endObjId).offset().top + boxCenterYOffset;
+					 break;
+				 case "#line5-wm":
+					 x1 = $(startObjId).offset().left;
+					 y1 = $(startObjId).offset().top + $(startObjId).height() - boxCenterYOffset;
+					 x2 = $(endObjId).offset().left;
+					 y2 = $(endObjId).offset().top + boxCenterYOffset;
+					 break;
+				 case "#line6-wm":
+					 x1 = $(startObjId).offset().left;
+					 y1 = $(startObjId).offset().top + $(startObjId).height() - boxCenterYOffset;
+					 x2 = $(endObjId).offset().left;
+					 y2 = $(endObjId).offset().top + boxCenterYOffset;
+					 break;
+			 }
+
+			 var hypotenuse = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+			 var angle = Math.atan2((y1-y2), (x1-x2)) *  (180/Math.PI);
+			 if(angle >= 90 && angle < 180){
+					 y1 = y1 - (y1-y2);
+			 }
+			 if(angle > 0 && angle < 90){
+					 x1 = x1 - (x1-x2);
+					 y1 = y1 - (y1-y2);
+			 }
+			 if(angle <= 0 && angle > -90){
+					 x1 = x1 - (x1-x2);
+			 }
+
+			 $(lineId).queue(function(){
+					 $(this).offset({top: y1, left: x1});
+					 $(this).dequeue();
+			 }).queue(function(){
+					 $(this).width(hypotenuse);
+					 $(this).dequeue();
+			 }).queue(function(){
+					 $(this).rotate(angle);
+					 $(this).dequeue();
+			 });
+		 }
+
+		 $(document).ready(function(){
+				 $("#tcd1").draggable({ delay: 0, distance: 0 },{
+						 drag: function(event, ui) {
+						 		drawLine("#wm50", "#tcd1", "#line1-wm");
+								drawLine("#tcd1", "#tcd2", "#line2-wm");
+						 }
+				 });
+				 $("#tcd2").draggable({ delay: 0, distance: 0 },{
+						 drag: function(event, ui) {
+						 		drawLine("#tcd1", "#tcd2", "#line2-wm");
+								drawLine("#tcd2", "#tcd3", "#line3-wm");
+						 }
+				 });
+				 $("#tcd3").draggable({ delay: 0, distance: 0 },{
+						 drag: function(event, ui) {
+						 		drawLine("#tcd2", "#tcd3", "#line3-wm");
+						 }
+				 });
+				 $("#tcd4").draggable({ delay: 0, distance: 0 },{
+						 drag: function(event, ui) {
+						 		drawLine("#wm50", "#tcd4", "#line4-wm");
+								drawLine("#tcd4", "#tcd5", "#line5-wm");
+						 }
+				 });
+				 $("#tcd5").draggable({ delay: 0, distance: 0 },{
+						 drag: function(event, ui) {
+						 		drawLine("#tcd4", "#tcd5", "#line5-wm");
+								drawLine("#tcd5", "#tcd6", "#line6-wm");
+						 }
+				 });
+				 $("#tcd6").draggable({ delay: 0, distance: 0 },{
+						 drag: function(event, ui) {
+						 		drawLine("#tcd5", "#tcd6", "#line6-wm");
+						 }
+				 });
+		 });
+
+ </script>
+	</head>
+	<body style="cursor: auto">
+		<img src="./frizzo.jpg" width="100%"/>
+		<div class="container">
+			<img id="wm50" style="position:absolute; left:50%; top:30%; margin-left:-75px; margin-top:-125px;" src="./wm50.png" />
+			<img id="tcd1" style="position: relative; left: 50px; top: 300px;" src="./tcd1.png" />
+			<img id="tcd2" style="position: relative; left: 50px; top: 300px;" src="./tcd2.png" />
+			<img id="tcd3" style="position: relative; left: 50px; top: 300px;" src="./tcd3.png" />
+			<img id="tcd4" style="position: relative; left: 50px; top: 300px;" src="./tcd4.png" />
+			<img id="tcd5" style="position: relative; left: 50px; top: 300px;" src="./tcd5.png" />
+			<img id="tcd6" style="position: relative; left: 50px; top: 300px;" src="./tcd6.png" />
+
+			<div id="line1-wm" class="line"></div>
+			<div id="line2-wm" class="line"></div>
+			<div id="line3-wm" class="line"></div>
+			<div id="line4-wm" class="line"></div>
+			<div id="line5-wm" class="line"></div>
+			<div id="line6-wm" class="line"></div>
+		</div>
+	</body>
+</html>
