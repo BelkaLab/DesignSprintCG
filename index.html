@@ -13,10 +13,10 @@
         $(function() {
           $( "#tcd1" ).draggable();
 					$( "#tcd2" ).draggable();
-					$( "#tcd3" ).draggable();
+					// $( "#tcd3" ).draggable();
 					$( "#tcd4" ).draggable();
 					$( "#tcd5" ).draggable();
-					$( "#tcd6" ).draggable();
+					// $( "#tcd6" ).draggable();
         });
     </script>
 		<style>
@@ -54,12 +54,12 @@
 					 x2 = $(endObjId).offset().left;
 					 y2 = $(endObjId).offset().top + boxCenterYOffset;
 					 break;
-				 case "#line3-wm":
-					 x1 = $(startObjId).offset().left;
-					 y1 = $(startObjId).offset().top + $(startObjId).height() - boxCenterYOffset;
-					 x2 = $(endObjId).offset().left;
-					 y2 = $(endObjId).offset().top + boxCenterYOffset;
-					 break;
+				//  case "#line3-wm":
+				// 	 x1 = $(startObjId).offset().left;
+				// 	 y1 = $(startObjId).offset().top + $(startObjId).height() - boxCenterYOffset;
+				// 	 x2 = $(endObjId).offset().left;
+				// 	 y2 = $(endObjId).offset().top + boxCenterYOffset;
+				// 	 break;
 				 case "#line4-wm":
 					 x1 = $(startObjId).offset().left + boxCenterXOffset*2;
 					 y1 = $(startObjId).offset().top + $(startObjId).height();
@@ -72,12 +72,12 @@
 					 x2 = $(endObjId).offset().left;
 					 y2 = $(endObjId).offset().top + boxCenterYOffset;
 					 break;
-				 case "#line6-wm":
-					 x1 = $(startObjId).offset().left;
-					 y1 = $(startObjId).offset().top + $(startObjId).height() - boxCenterYOffset;
-					 x2 = $(endObjId).offset().left;
-					 y2 = $(endObjId).offset().top + boxCenterYOffset;
-					 break;
+				//  case "#line6-wm":
+				// 	 x1 = $(startObjId).offset().left;
+				// 	 y1 = $(startObjId).offset().top + $(startObjId).height() - boxCenterYOffset;
+				// 	 x2 = $(endObjId).offset().left;
+				// 	 y2 = $(endObjId).offset().top + boxCenterYOffset;
+				// 	 break;
 			 }
 
 			 var hypotenuse = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
@@ -115,14 +115,14 @@
 				 $("#tcd2").draggable({ delay: 0, distance: 0 },{
 						 drag: function(event, ui) {
 						 		drawLine("#tcd1", "#tcd2", "#line2-wm");
-								drawLine("#tcd2", "#tcd3", "#line3-wm");
+								// drawLine("#tcd2", "#tcd3", "#line3-wm");
 						 }
 				 });
-				 $("#tcd3").draggable({ delay: 0, distance: 0 },{
-						 drag: function(event, ui) {
-						 		drawLine("#tcd2", "#tcd3", "#line3-wm");
-						 }
-				 });
+				//  $("#tcd3").draggable({ delay: 0, distance: 0 },{
+				// 		 drag: function(event, ui) {
+				// 		 		drawLine("#tcd2", "#tcd3", "#line3-wm");
+				// 		 }
+				//  });
 				 $("#tcd4").draggable({ delay: 0, distance: 0 },{
 						 drag: function(event, ui) {
 						 		drawLine("#wm50", "#tcd4", "#line4-wm");
@@ -132,14 +132,14 @@
 				 $("#tcd5").draggable({ delay: 0, distance: 0 },{
 						 drag: function(event, ui) {
 						 		drawLine("#tcd4", "#tcd5", "#line5-wm");
-								drawLine("#tcd5", "#tcd6", "#line6-wm");
+								// drawLine("#tcd5", "#tcd6", "#line6-wm");
 						 }
 				 });
-				 $("#tcd6").draggable({ delay: 0, distance: 0 },{
-						 drag: function(event, ui) {
-						 		drawLine("#tcd5", "#tcd6", "#line6-wm");
-						 }
-				 });
+				//  $("#tcd6").draggable({ delay: 0, distance: 0 },{
+				// 		 drag: function(event, ui) {
+				// 		 		drawLine("#tcd5", "#tcd6", "#line6-wm");
+				// 		 }
+				//  });
 		 });
 
  </script>
@@ -158,17 +158,17 @@
 			<img id="wm50" style="position:absolute; left:50%; top:30%; margin-left:-75px; margin-top:-125px;" src="./wm50.png" />
 			<img id="tcd1" style="position: relative; left: 50px; top: 300px;" src="./tcd1.png" />
 			<img id="tcd2" style="position: relative; left: 50px; top: 300px;" src="./tcd2.png" />
-			<img id="tcd3" style="position: relative; left: 50px; top: 300px;" src="./tcd3.png" />
+			<!-- <img id="tcd3" style="position: relative; left: 50px; top: 300px;" src="./tcd3.png" /> -->
 			<img id="tcd4" style="position: relative; left: 50px; top: 300px;" src="./tcd4.png" />
 			<img id="tcd5" style="position: relative; left: 50px; top: 300px;" src="./tcd5.png" />
-			<img id="tcd6" style="position: relative; left: 50px; top: 300px;" src="./tcd6.png" />
+			<!-- <img id="tcd6" style="position: relative; left: 50px; top: 300px;" src="./tcd6.png" /> -->
 
 			<div id="line1-wm" class="line"></div>
 			<div id="line2-wm" class="line"></div>
-			<div id="line3-wm" class="line"></div>
+			<!-- <div id="line3-wm" class="line"></div> -->
 			<div id="line4-wm" class="line"></div>
 			<div id="line5-wm" class="line"></div>
-			<div id="line6-wm" class="line"></div>
+			<!-- <div id="line6-wm" class="line"></div> -->
 		</div>
 	</body>
 </html>
